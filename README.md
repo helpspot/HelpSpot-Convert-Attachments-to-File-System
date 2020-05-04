@@ -16,6 +16,6 @@ By default, after the change above HelpSpot will store new attachments to the fi
 1. Download the script found in this repository, move it to the root HelpSpot folder. This is the one with config.php in it. If using FTP to move the file be sure to force binary mode.
 2. Backup your database (seriously)
 3. Place HelpSpot in maintenance mode to prevent new requests while the script runs (Admin->Settings)
-4. From the command line do "/path/do/php -f /path/to/convert_attach_from_db_to_file.php"
+4. From the command line do "/path/to/php -f /path/to/convert_attach_from_db_to_file.php"
 
 you can run it from the browser if you have no choice, though you may have to restart it from time to time if the web server times out. Note that the file may take hours to run if you have a lot of attachments.
