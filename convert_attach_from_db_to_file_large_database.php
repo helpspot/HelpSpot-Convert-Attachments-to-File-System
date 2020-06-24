@@ -43,6 +43,11 @@ function paginatedQuery($baseQuery) {
 // Find total documents
 $count = $GLOBALS['DB']->GetOne(attachmentCountQuery($baseQuery));
 
+if ($count === false || is_null($count)) {
+    echo "Possible query error: '".$GLOBALS['DB']->ErrorMsg()."'";
+    die();
+}
+
 // 1000 rows at a time
 $totalRuns = ceil($count / 1000);
 
@@ -53,6 +58,11 @@ $totalProcessed = 0;
 
 while($totalRuns > 0) {
     $query = $GLOBALS['DB']->Execute(paginatedQuery($baseQuery));
+
+    if ($query === false || is_null($query)) {
+        echo "Possible query error: '".$GLOBALS['DB']->ErrorMsg()."'";
+        die();
+    }
 
     //LOOP OVER AND CONVERT TO FILES
     while($file = $query->FetchRow()){
