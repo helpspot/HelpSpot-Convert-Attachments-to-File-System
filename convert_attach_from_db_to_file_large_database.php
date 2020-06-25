@@ -33,11 +33,13 @@ function attachmentCountQuery($baseQuery) {
 }
 
 function paginatedQuery($baseQuery) {
+    $fields = ' HS_Request_History.dtGMTChange,HS_Documents.xDocumentId,HS_Documents.sFilename,HS_Documents_Location.sFileLocation';
+
     if (cDBTYPE == 'mssql' || cDBTYPE == 'sqlsrv') {
-        return 'SELECT TOP 1000'.$baseQuery;
+        return 'SELECT TOP 1000' . $fields . $baseQuery;
     }
 
-    return $baseQuery . 'LIMIT 1000';
+    return 'SELECT' . $fields . $baseQuery . 'LIMIT 1000';
 }
 
 // Find total documents
