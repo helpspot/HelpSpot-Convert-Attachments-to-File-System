@@ -114,7 +114,8 @@ while($totalRuns > 0) {
                 if(!$blob) die('Database update failed on xDocumentId: '.$file['xDocumentId'].', try restarting script');
             }else{
                 echo 'Cannot write to path: '.cHD_ATTACHMENT_LOCATION_PATH . $file_path."\n";
-                exit;
+                echo "The document that failed is xDocumentId: '".$file['xDocumentId']."'\n";
+                exit; # Remove this line if you would like the script to continue past this error without stopping
             }
             $totalProcessed ++;
         }
